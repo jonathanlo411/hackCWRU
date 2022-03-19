@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Rosario:400&subset=latin,latin-ext);
 body {
     box-sizing: border-box;
-    margin: 15px;
     background: url("images/Sunset.png") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -12,9 +11,15 @@ body {
 }
 
 .form-box{
-    margin-top: 5%;
-    margin-left: 30%;
-    margin-right: 30%;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     text-align: center;
     background-color: #1F2833;
     opacity: 0.9;
@@ -30,10 +35,10 @@ body {
 }
 
 input[type=text]{
-    margin-top:10px;
+    max-width: 300px;
+    margin-bottom: 10px;
     padding: 10px 50px;
     text-align: center;
-    width: 50%;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
 }
@@ -54,16 +59,4 @@ input[type=text]{
 
 #home{
     margin-top: -20px;
-}
-
-@media screen and (min-width: 400px) {
-    body {
-      background-color: lightgreen;
-    }
-  }
-  
-  @media screen and (min-width: 800px) {
-    body {
-      background-color: lavender;
-    }
 }

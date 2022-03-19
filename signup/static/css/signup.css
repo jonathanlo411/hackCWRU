@@ -12,9 +12,15 @@ body {
 }
 
 .form-box{
-    margin-top: 5%;
-    margin-left: 30%;
-    margin-right: 30%;
+    width: 400px;
+    height: 450px;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     text-align: center;
     background-color: #1F2833;
     opacity: 0.9;
