@@ -34,6 +34,12 @@ body {
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
+
+#discover:hover {
+    cursor: pointer;
+    background-color: #fff;
+}
+
 #color {
     color: #fff;
     text-decoration: none;
