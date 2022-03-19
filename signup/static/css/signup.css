@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Rosario:400&subset=latin,latin-ext);
+body {
+    box-sizing: border-box;
+    margin: 15px;
+    background: url("images/Sunset.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffff;
+    font-family: 'Rosario';
+}
+
+.form-box{
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+    background-color: rgb(27, 59, 238);
+    opacity: 0.9;
+    border-radius: 25px;
+}
+
+#title-desc{
+    font-size: 50px;
+}
+#login-desc {
+    font-size: 30px;
+    margin-top: -20px;
+}
+
+input[type=text]{
+    margin-top:10px;
+    padding: 10px 50px;
+    text-align: center;
+    width: 50%;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+#submit{
+    margin-top:10px;
+    margin-bottom: 10px;
+    padding: 5px 30px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.link {
+    display:block;
+    text-decoration: none;
+    color: #ffff;
+}
+
+#home{
+    margin-top: -20px;
+}

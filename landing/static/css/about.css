@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Rosario:400&subset=latin,latin-ext);
 body {
     box-sizing: border-box;
     padding: 15px;
@@ -8,6 +9,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     color: #ffff;
+    font-family: 'Rosario';
 }
 
 .nav-item {
