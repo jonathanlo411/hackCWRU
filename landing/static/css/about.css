@@ -9,3 +9,25 @@ body {
     background-size: cover;
     color: #ffff;
 }
+
+.nav-item {
+    font-size: 30px;
+    margin-right: 20px;
+    margin-left: 10px;
+    display: inline;
+}
+.description{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#title{
+    font-size: 50px;
+}
+
+#summary{
+    font-size: 20px;
+}
+.color {
+    text-decoration: none;
+    color: #ffff;
+}
