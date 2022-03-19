@@ -2,6 +2,7 @@ body {
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    background-image: url("images/Sunset.png");
 }
 
 .nav-item {
@@ -32,4 +33,8 @@ body {
 
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+#color {
+    color: #fff;
+    text-decoration: none;
 }
