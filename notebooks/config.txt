@@ -1,3 +1,1 @@
-Discord Client ID:954815661174055002
-Discord Client Secret:RA7LiEtSW45jflDXh5rwKd17V4KI94QM
-Discord Bot Token:OTU0ODE1NjYxMTc0MDU1MDAy.YjYnYQ.JQ6LiJaDuChWum_4jUQOtqYIg9s
+test
