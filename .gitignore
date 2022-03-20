@@ -1,6 +1,7 @@
 # Discord API
 *.txt
 *.json
+config.yml
 
 # Jupyter Notebook Saves
 .ipynb_checkpoints
