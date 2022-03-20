@@ -70,3 +70,21 @@ input[type=text]{
     text-decoration: none;
     color: #ffff;
 }
+
+#disc {
+    margin-top: 10vh;
+    padding: 7.5px 27.5px;
+    border-style: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    background-color: #5865F2;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+#disc:hover {
+    background-color: #7880db;
+    cursor: pointer;
+    border-radius: 2.5px;
+}

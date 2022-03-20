@@ -29,5 +29,7 @@ def signup(request):
                 login(request, user)
                 return HttpResponseRedirect('/dashboard')
 
-
-    return render(request, 'signup/signup.html')
+    context = {
+        "ucreation": UserCreation
+    }
+    return render(request, 'signup/signup.html', context)
