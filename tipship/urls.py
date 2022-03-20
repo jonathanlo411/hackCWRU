@@ -6,7 +6,7 @@ from django.urls import path
 from landing.views import landing, about
 from signup.views import signup
 from login.views import login
-from dashboard.views import dashboard, get_data, post_data
+from dashboard.views import dashboard, get_data, check_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,5 +16,5 @@ urlpatterns = [
     path('login', login, name="login"),
     path('dashboard', dashboard, name="dashboard"),
     path('api/data', get_data),
-    path('api/post', post_data),
+    path('api/post', check_user),
 ]

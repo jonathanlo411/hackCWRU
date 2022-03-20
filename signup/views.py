@@ -25,7 +25,7 @@ def signup(request):
                 userp = userprofile(username = username, password = password)
                 userp.save()
                 u = User.objects.get(username = username)
-                user = authenticate(username=u.get_username(),password=password)
+                user = authenticate(request, username=u.get_username(),password=password)
                 login(request, user)
                 return HttpResponseRedirect('https://discord.com/api/oauth2/authorize?client_id=954815661174055002&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fdashboard&response_type=code&scope=identify%20email')
 

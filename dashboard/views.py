@@ -1,6 +1,8 @@
 # Django Imports
+from urllib import response
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.models import User
 
 # Models
 from signup.models import userprofile
@@ -14,7 +16,6 @@ import json
 # Dashboard Render
 def dashboard(request):
     user = userprofile.objects.get(username = request.user)
-    print(user)
     if (request.method=="GET") and ('code' in request.GET):
         # Grab Discord Client ID and Client Secret
         script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -43,21 +44,28 @@ def dashboard(request):
         # Render Page
         return render(request, "dashboard/dashboard.html")
 
-    return render(request, "dashboard/dashboard.html")
+    context = {
+        "user": user
+    }
+    return render(request, "dashboard/dashboard.html", context)
 
 
 # APIs
 def get_data(request):
+    labels = ["Thu, Fri, Sat, Sun"]
+    payments = [40, 70, 40, 100]
     data = {
-        "day1": 2,
-        "day2": 100,
-        "day3": 110
+        "labels": labels,
+        "data": payments
     }
     return JsonResponse(data)
 
-def post_data(request):
-    if request.method=="POST":
-        return JsonResponse(status=209)
+def check_user(request):
+    if request.method=="GET":
+        pot_user = request.GET['user']
+        if User.objects.filter(username = pot_user).exists():
+            return JsonResponse({"user_exists": True}, status=200)
+        return JsonResponse({"user_exists": False}, status=200)
     return JsonResponse({'error':'something bad'},status=400)
 
 
