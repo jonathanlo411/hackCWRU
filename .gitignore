@@ -4,3 +4,5 @@
 # Jupyter Notebook Saves
 .ipynb_checkpoints
 
+# Caches
+__pycache__
