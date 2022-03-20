@@ -8,7 +8,6 @@ body {
     background-size: cover;
     color: #000000;
     font-family: 'Rosario';
-    box-sizing: border-box;
 }
 
 
@@ -16,11 +15,15 @@ body {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
-    grid-auto-rows: minmax(100%, auto);
+    position: fixed;
+    top: 5em;
+    left: 2em;
+    right: 2em;
+    bottom: 2em;
 }
 
 .wrapper > div{
-    background-color: #ffffff;
+    background-color: #eeeeee;
     padding: 1em;
 }
 
@@ -63,8 +66,9 @@ img {
     margin:auto;
     width: 100%;
     background-color: #aaaaaa;
-    overflow: auto;
     justify-self: center;
+    border-radius: 10px;
+    overflow: 100px;
     border: #ffffff 20px ;
 }
 
