@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Rosario:400&subset=latin,latin-ext);
 body {
+    width: 100%;
     padding: 1em;
     background: url("images/Sunset.png") no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -20,11 +21,13 @@ body {
     left: 2em;
     right: 2em;
     bottom: 2em;
+    grid-auto-rows: 1fr;
 }
 
 .wrapper > div{
     background-color: #eeeeee;
     padding: 1em;
+    border-radius: 15px;
 }
 
 #recent{
@@ -65,13 +68,24 @@ img {
 .recenttrans{
     margin:auto;
     width: 100%;
-    background-color: #aaaaaa;
     justify-self: center;
     border-radius: 10px;
-    overflow: 100px;
+    max-height: 40vh;
+    box-sizing: border-box;
+    overflow-y: auto;
     border: #ffffff 20px ;
 }
 
+.freqtrans{
+    margin:auto;
+    width: 100%;
+    justify-self: center;
+    border-radius: 10px;
+    max-height: 20vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border: #ffffff 20px ;
+}
 .users{
     display:grid;
     grid-template-columns: 2fr 6fr 3fr;
@@ -83,6 +97,7 @@ img {
     margin-left: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+    border-radius: 15px;
     
 }
 

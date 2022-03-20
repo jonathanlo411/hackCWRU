@@ -3,6 +3,8 @@ from urllib import response
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.contrib.auth import authenticate, login
 
 # Models
 from signup.models import userprofile
@@ -17,6 +19,7 @@ import json
 def dashboard(request):
     user = userprofile.objects.get(username = request.user)
     if (request.method=="GET") and ('code' in request.GET):
+
         # Grab Discord Client ID and Client Secret
         script_dir = os.path.dirname(os.path.realpath(__file__))
         config_file = open(os.path.join(script_dir, 'config.json'))
@@ -30,19 +33,9 @@ def dashboard(request):
         token = exchange_code(code, cid, cis)
         user_obj = get_user(token)
         
-        # Creating a userprofile
-        if userprofile.objects.filter(did = user_obj['id']).exists():
-            print("error")
-        else:
-            db_user = userprofile(did = user_obj['id'],
-                username = user_obj['username'],
-                access_token = token['access_token'],
-                refresh_token = token['refresh_token']
-            )
-            db_user.save()
-
-        # Render Page
-        return render(request, "dashboard/dashboard.html")
+        # Updating user
+        user.add(token['access_token'], token['refresh_token'])
+        
 
     context = {
         "user": user
