@@ -16,5 +16,5 @@ urlpatterns = [
     path('login', login, name="login"),
     path('dashboard', dashboard, name="dashboard"),
     path('api/data', get_data),
-    path('api/post', check_user),
+    path('api/user', check_user),
 ]

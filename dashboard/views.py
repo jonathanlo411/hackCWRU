@@ -13,11 +13,24 @@ from signup.models import userprofile
 import requests
 import os
 import json
-
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.compose import make_column_selector
+from sklearn.decomposition import PCA
+from sklearn.impute import SimpleImputer
 
 # Dashboard Render
 def dashboard(request):
-    user = userprofile.objects.get(username = request.user)
+    user = User.objects.get(username = request.user)
     if (request.method=="GET") and ('code' in request.GET):
 
         # Grab Discord Client ID and Client Secret
@@ -52,6 +65,16 @@ def get_data(request):
         "data": payments
     }
     return JsonResponse(data)
+
+def update_data(request):
+    if request.method == "POST":
+        transaction = request.GET['transaction']
+        transaction_obj = Transaction(receiver = transaction['receiver'],
+            ammount = transaction['ammount']
+        )
+        transaction_obj.save()
+        return JsonResponse(status=200)
+    return JsonResponse({"error": "something went wrong!"}, status=400)
 
 def check_user(request):
     if request.method=="GET":
@@ -90,3 +113,90 @@ def get_user(token):
     r = requests.get('%s/users/@me' % url, headers=headers)
     r.raise_for_status()
     return r.json()
+
+
+# ML Analytics
+def build_pipeline(model_df, train_test_split):
+    categorical_features = ['Segments', 'BillingAddress', 'Transactions']
+    categorical_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(missing_values=np.nan, strategy='most_frequent')),
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))])
+
+    numeric_features = ['Spend']
+    numeric_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(missing_values=np.nan, strategy='most_frequent')),
+        ('stdscaler', StandardScaler())])
+
+    base_preprocessor = ColumnTransformer(
+        transformers=[('cat', categorical_transformer, categorical_features),
+                    ('num', numeric_transformer, numeric_features)])
+
+    baseline_pl = Pipeline(steps=[('preprocessor', base_preprocessor),
+                        ('regression', linear_model.LinearRegression())])
+
+    # Split the train and test portions (random state for reproducibility)
+    baseX_train, baseX_test, basey_train, basey_test = train_test_split(model_df.drop('Impressions', axis=1), model_df.Impressions, test_size=0.2, random_state=54321)
+
+class StdScalerByGroup(BaseEstimator, TransformerMixin):
+    
+    def __init__(self):
+        pass
+
+    def fit(self, X, y=None):
+        """
+        :Example:
+        >>> cols = {'g': ['A', 'A', 'B', 'B'], 'c1': [1, 2, 2, 2], 'c2': [3, 1, 2, 0]}
+        >>> X = pd.DataFrame(cols)
+        >>> std = StdScalerByGroup().fit(X)
+        >>> std.grps_ is not None
+        True
+        """
+        # X may not be a pandas dataframe (e.g. a np.array)
+        df = pd.DataFrame(X)
+        # A dictionary of means/standard-deviations for each column, for each group.
+        self.grps_ = {'means': (df.groupby('CountryCode').mean()).to_dict('index'), 'stds': (df.groupby('CountryCode').std()).to_dict('index')}
+        return self
+
+    def transform(self, X, y=None):
+        """
+        :Example:
+        >>> cols = {'g': ['A', 'A', 'B', 'B'], 'c1': [1, 2, 3, 4], 'c2': [1, 2, 3, 4]}
+        >>> X = pd.DataFrame(cols)
+        >>> std = StdScalerByGroup().fit(X)
+        >>> out = std.transform(X)
+        >>> out.shape == (4, 2)
+        True
+        >>> np.isclose(out.abs(), 0.707107, atol=0.001).all().all()
+        True
+        """
+        try:
+            getattr(self, "grps_")
+        except AttributeError:
+            raise RuntimeError("You must fit the transformer before tranforming the data!")
+        
+
+        # Define a helper function here?
+        
+        def z_scale(df):
+            means = df['CountryCode'].map(self.grps_['means'])
+            stds = df['CountryCode'].map(self.grps_['stds'])
+            big_df = pd.DataFrame()                  
+            for val in self.grps_['means'].keys():
+                new_df = df[df['CountryCode'] == val]
+                            
+                for col in new_df.drop('CountryCode', axis=1).columns:
+                    new_df[col] = (new_df[col] - self.grps_['means'][val][col]) / self.grps_['stds'][val][col]
+                                        
+                big_df = pd.concat([big_df, new_df])
+            
+            return big_df
+        # X may not be a dataframe (e.g. np.array)
+        df = pd.DataFrame(X)   
+        return z_scale(df).drop('CountryCode', axis=1)
+
+def test_alpha(preprocessor):
+    # Test multiple alpha values
+    for alpha in np.arange(0,1.1,0.1):
+        # Redefine the pipelines with a Ridge model
+        pl = Pipeline(steps=[('preprocessor', preprocessor),
+                        ('regression', linear_model.Lasso(alpha=alpha))])

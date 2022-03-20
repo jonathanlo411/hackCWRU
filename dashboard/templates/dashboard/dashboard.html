@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./../../static/css/dashboard.css">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./../../static/css/dashboard.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TipShip Landing</title>
+    <script  src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="./../../static/js/app.js"></script>
+    <script defer src="./../../static/js/logout.js"></script>
+    <title>TipShip Dashboard</title>
 </head>
 <body>
     <div class="wrapper">
@@ -13,36 +17,46 @@
             <h1>TipShip</h1>
         </div>
 
-        <div class="pfp">
-            <img src="./../../static/css/images/Sunset.png" alt="Profile picture here">
+        <div class="pfp" id="sadsrv">
+            <img src="https://cdn.discordapp.com/attachments/954818497878302854/955036364515180544/balloon_2.jpg" alt="Profile picture here">
         </div>
 
         <div class="recenttrans">
             <h1 class="header">Recent Transactions</h1>
             <div class="transscreen">
                 <div class="users">
+                    <div class="userpfp vcenter"><img src="https://cdn.discordapp.com/attachments/954818497878302854/955044265296281600/s_2.jpg" alt="pfp"></div>
+                    <div class="vcenter">Brioche</div>
+                    <div class="vcenter">- $25.00</div>
+                </div>  
+                <div class="users">
                     <div class="userpfp vcenter"><img src="./../../static/css/images/Sunset.png" alt="pfp"></div>
-                    <div class="vcenter">USERNAME</div>
-                    <div class="vcenter">MONEY</div>
-                </div>   
+                    <div class="vcenter">Darken</div>
+                    <div class="vcenter">+ $10.00</div>
+                </div>  
             </div>  
         </div>
 
         <div class="spending">
             <h1 class="header">Your Spendings</h1>
-            <p>Graph Here</p> 
+            <canvas id="myChart"></canvas>
         </div>
 
+         
         <div class="frequent">
             <h1 class="header">Your Most Frequent People</h1>
             <div class="freqscreen">
                 <div class="frequsers">
+                    <div class="userpfp vcenter"><img src="https://cdn.discordapp.com/attachments/954818497878302854/955044265296281600/s_2.jpg" alt="pfp"></div>
+                    <div class="vcenter">Brioche</div>
+                </div>
+                <div class="frequsers">
                     <div class="userpfp vcenter"><img src="./../../static/css/images/Sunset.png" alt="pfp"></div>
-                    <div class="vcenter">USERNAME</div>
-                    <div class="vcenter">MONEY</div>
-                </div>   
+                    <div class="vcenter">Darken</div>
+                </div>      
             </div> 
         </div>
+
     </div>
 </body>
 </html>

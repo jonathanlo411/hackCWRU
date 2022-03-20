@@ -7,6 +7,10 @@ name = "pypi"
 django = "*"
 discord = "*"
 requests = "*"
+django-cors-headers = "*"
+pandas = "*"
+numpy = "*"
+sklearn = "*"
 
 [dev-packages]
 
