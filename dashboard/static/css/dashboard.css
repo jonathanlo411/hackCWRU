@@ -6,8 +6,9 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: #ffff;
+    color: #000000;
     font-family: 'Rosario';
+    box-sizing: border-box;
 }
 
 
@@ -15,16 +16,12 @@ body {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(100%, auto);
 }
 
 .wrapper > div{
-    background-color: #1F2833;
+    background-color: #ffffff;
     padding: 1em;
-}
-
-.wrapper > div:nth-child(odd){
-    background:#37475c;
 }
 
 #recent{
@@ -35,7 +32,8 @@ body {
     text-align: center;
 }
 
-.right{
+.navi{
+    color: #ffffff;
     display:grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
@@ -43,13 +41,17 @@ body {
     margin-bottom: .5em;
 }
 
-#pfp{
+.end{
     justify-self: end;
+}
+
+.pfp{
+
     display: inline-block; 
     position: relative; width: 40px; 
     height: 40px; 
     overflow: hidden;
-     border-radius: 50%; 
+    border-radius: 50%; 
 }
 img {
     width: 40px; 
@@ -60,9 +62,27 @@ img {
 .recenttrans{
     margin:auto;
     width: 100%;
-    background-color: lightblue;
-    max-height: 500px;
+    background-color: #aaaaaa;
     overflow: auto;
     justify-self: center;
-    border-radius: 10px;
+    border: #ffffff 20px ;
+}
+
+.users{
+    display:grid;
+    grid-template-columns: 2fr 6fr 3fr;
+    grid-gap: 1em;
+    grid-auto-rows: 50px;
+    justify-self: center;
+    border: #000000 2px solid;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+
+.vcenter{
+    align-self: center;
+    justify-self: center;
 }
