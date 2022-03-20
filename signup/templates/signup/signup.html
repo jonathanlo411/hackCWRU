@@ -12,14 +12,18 @@
         <h3 class="nav-item" id="home"><a href="/" class = "color">Home</a></h3>
         <h3 class="nav-item"><a href="/about" class = "color">About</a></h3>
     </nav>
-    <form action="" method="POST" class="form-box" action="/signup/">
+    <form action="" method="POST" class="form-box">
         {% csrf_token %}
+        {{ ucreation }}
         <br>
         <h1 id="title-desc">TipShip</h1>
         <p id="login-desc">Create an account!</p>
+        <input type="text" placeholder="Username">
         {{ ucreation.username }}
         <br>
-        {{ ucreation.password}}
+        <input type="text" placeholder="Password">
+        <br>
+        <input type="text" placeholder="Confirm Password">
         <br>
         <input type="submit" name="signup" value="Sign Up" id="submit">
         <a href="/login" class="link">Login to Account</a>
