@@ -33,6 +33,7 @@ body {
 }
 
 .navi{
+    color: #ffffff;
     display:grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
