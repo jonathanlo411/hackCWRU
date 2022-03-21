@@ -10,9 +10,9 @@ We play MMO games regularly, using Discord voice channels to communicate, and we
 
 
 ## Tech Stack
-The backend is in Python utilizing the [Django](https://www.djangoproject.com/) framework. The front end is a mix of HTML/CSS and JavaScript. We use Jquery AJAX requests to asynchronously update the front end. Moreover, we use [Chart.js](https://www.chartjs.org/) to create a chart of spending over a period of time. The ML analysis and pipline utilize [sklearn](https://scikit-learn.org/stable/). The database is running on a [GCP MySQL](https://cloud.google.com/sql/docs/mysql) instance. 
+The backend is in Python utilizing the [Django](https://www.djangoproject.com/) framework. The front end is a mix of HTML/CSS and JavaScript. We use Jquery AJAX requests to asynchronously update the front end. Moreover, we use [Chart.js](https://www.chartjs.org/) to create a chart of spending over a period of time. The ML analysis and pipline utilize [scikit-learn](https://scikit-learn.org/stable/). The database is running on a [GCP MySQL](https://cloud.google.com/sql/docs/mysql) instance. 
 
-The discord bot lives on a Flask runtime and utilizes it to `GET` and `POST` to our Django WebApp utilzing an open CORS policy and built API endpoints. Moreover, it utilizes PayPal's API to securely transfer payments.
+The discord bot lives on a Flask runtime and utilizes it to `GET` and `POST` to our Django WebApp utilzing an open CORS policy and built API endpoints. Moreover, it utilizes PayPal's REST SDK to securely transfer payments.
 
 Code Flow:
 ![](https://cdn.discordapp.com/attachments/942218891952783421/955350480983298058/unknown.png)
